@@ -93,7 +93,7 @@ public class LoginController {
             MailTask mailTask = new MailTask(mailSender,mailMessage);
 // 让线程池 去执行该任务
 
-            
+//            dd
             executor.execute(mailTask);
             response.getWriter().write("2");
         }
