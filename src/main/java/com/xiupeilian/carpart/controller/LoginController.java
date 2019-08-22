@@ -92,6 +92,8 @@ public class LoginController {
 //  创建一个 任务  交给 线程池
             MailTask mailTask = new MailTask(mailSender,mailMessage);
 // 让线程池 去执行该任务
+
+            
             executor.execute(mailTask);
             response.getWriter().write("2");
         }
