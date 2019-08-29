@@ -75,6 +75,10 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiupeilian.carpart.model.Company" >
+    <selectKey order="AFTER" keyProperty="id" resultType="int">
+      select last_insert_id()
+
+    </selectKey>
     insert into company
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -386,4 +390,8 @@
       reserved_field3 = #{reservedField3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findCompanyByName" parameterType="string" resultMap="BaseResultMap">
+    select * from company where company_name=#{value}
+
+  </select>
 </mapper>

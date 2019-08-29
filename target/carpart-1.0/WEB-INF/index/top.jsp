@@ -5,7 +5,6 @@
 <title>修配连汽配市场</title>
 <link href="${ctx}/css/index.css" rel="stylesheet" type="text/css" />
 </head>
-  
   <body>
   <div class="top2">
   <div class="wid">
@@ -16,7 +15,7 @@
                 
                 <li>${now}</li>
                 <li></li>
-                <li class="tuichu" onclick = "javascript:if(confirm('您确定要退出吗？')){window.parent.location.href='${ctx}/login/logout.shtml'}" ><a href="javascript:;;">退出</a></li>
+                <li class="tuichu" onclick = "javascript:if(confirm('您确定要退出吗？')){window.parent.location.href='${ctx}/logout'}" ><a href="javascript:;;">退出</a></li>
             </ul>
             <div class="clear"></div>
         </div>

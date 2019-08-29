@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- 1:spring和shiro整合的配置文件当中，需要定义bean shirofilter -->
+    <bean id="ShiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <!-- 如果没有认证将要跳转的登陆地址，http可访问的url，如果不在表单认证过虑器FormAuthenticationFilter中指定此地址就为身份认证地址 -->
+<!--        身份认证 没有成功（没有登录）的话 的跳转地址-->
+        <property name="loginUrl" value="/login/toLogin" />
+<!--        身份权限-->
+        <!-- 没有权限跳转的地址 -->
+        <property name="unauthorizedUrl" value="/login/noauth" />
+        <!-- shiro拦截器配置 -->
+        <!-- 定义权限拦截的规则
+        authc（授权访问） 权限认证通过才可以访问
+        anon（游客级别 完全开放）  不需要登录认证 也不需要权限认证
+        user（用户级别 需要登陆访问）  登录认证通过才可以访问
+        logout  退出登录  不需要自己定义退出登录功能
+
+         -->
+        <!-- 过滤器链定义   shirofilter可以拦截静态子资源的，所以静态资源一定得在这里配置 -->
+<!--        定义规则-->
+<!--        注意  把最大 的权限  配在 最下面-->
+        <property name="filterChainDefinitions">
+            <value>
+                /login/**= anon
+                /css/**=anon
+                /html/**=anon
+                /images/**=anon
+                /js/**=anon
+                /company/**=roles[admin]
+                /logout = logout
+                <!-- user表示身份认证通过或通过记住我认证通过的可以访问 -->
+                /** = user
+                <!-- /**放在最下边，如果一个url有多个过虑器则多个过虑器中间用逗号分隔，如：/** = user,roles[admin] -->
+            </value>
+        </property>
+    </bean>
+
+    <!-- 安全管理器  把reaml注入给安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm" />
+
+    </bean>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 自定义 realm -->
+    <bean id="userRealm" class="com.xiupeilian.carpart.session.UserRealm">
+    </bean>
+
+
+
+
+
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+
+
+
+</beans>
+

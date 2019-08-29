@@ -114,4 +114,7 @@
       ENGLISH_NAME = #{englishName,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findBrandAll" resultMap="BaseResultMap">
+    select * from brand order by seq
+  </select>
 </mapper>

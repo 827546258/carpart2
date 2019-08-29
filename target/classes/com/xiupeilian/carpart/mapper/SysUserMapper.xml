@@ -193,5 +193,26 @@
     select * from sys_user where login_name=#{loginName} and email=#{email} and user_status=0
 
   </select>
+  <select id="findUser" resultMap="BaseResultMap">
+    select * from sys_user  limit 0,5
+  </select>
+  <select id="findUsers" resultMap="BaseResultMap" parameterType="loginVo" >
+    select * from sys_user
+    where COMPANY_ID = #{companyId}
+    <if test="name != null" >
+      and USERNAME like '%${name}%'
+    </if>
+  </select>
 
+  <select id="findUserByLoginName" parameterType="string" resultMap="BaseResultMap">
+    select * from sys_user where login_name=#{loginName}
+  </select>
+
+  <select id="findUserByPhone" parameterType="string" resultMap="BaseResultMap">
+
+    select * from sys_user where phone=#{value}
+  </select>
+  <select id="findUserByEmail" parameterType="string" resultMap="BaseResultMap">
+        select * from sys_user where email=#{value}
+    </select>
 </mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/cache
+           http://www.springframework.org/schema/cache/spring-cache.xsd">
+<!-- 开启缓存 的注解 支持   将来 扫包 器会 扫到cache  相关注解-->
+    <cache:annotation-driven/>
+<!--缓存管理器-->
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <!-- 这里可以配置多个缓存的实现,spring cache只提供了cache接口
+                缓存的实现，需要自己手动完成
+
+                 -->
+                <bean class="com.xiupeilian.carpart.Cache.RedisCache">
+                    <property name="redisTemplate" ref="redisTemplate" />
+                    <!-- name对应的名称要在类或方法的注解中使用 -->
+                    <property name="name" value="redisCache"/>
+
+                </bean>
+
+
+
+            </set>
+        </property>
+    </bean>
+
+
+
+
+
+
+
+</beans>

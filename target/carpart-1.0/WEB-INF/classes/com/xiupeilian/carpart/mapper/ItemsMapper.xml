@@ -209,4 +209,27 @@
       reserved_field3 = #{reservedField3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findItemsByQueryVo" parameterType="items" resultMap="BaseResultMap">
+    select * from items
+    <where>
+      delete_status=0
+      <if test="title != null and title != ''">
+        and title like '%${title}%'
+      </if>
+      <if test="content != null and content != ''">
+        and content like '%${content}%'
+      </if>
+      <!-- 如果用户选择的是所有品牌或压根没选 -->
+      <if test="brandId != null and brandId!=1">
+        and brand_id = #{brandId}
+
+      </if>
+
+      <if test="partId != null">
+        and part_id =#{partId}
+      </if>
+
+    </where>
+    order by update_time desc
+  </select>
 </mapper>

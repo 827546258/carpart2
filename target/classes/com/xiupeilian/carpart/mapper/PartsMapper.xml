@@ -90,4 +90,7 @@
       seq = #{seq,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findPartsAll" resultMap="BaseResultMap">
+    select * from parts order by seq
+  </select>
 </mapper>

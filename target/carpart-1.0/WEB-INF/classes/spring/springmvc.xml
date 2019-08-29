@@ -43,4 +43,10 @@
 			<bean class="com.xiupeilian.carpart.session.SessionInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
+<!--	文件上传 解析器-->
+
+	<bean id="multipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+	</bean>
 </beans>

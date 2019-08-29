@@ -161,4 +161,10 @@
       Pinyin = #{pinyin,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findCitiesByParentId" parameterType="int"
+          resultMap="BaseResultMap">
+
+    select * from city where parent_id=#{parentId}
+  </select>
 </mapper>

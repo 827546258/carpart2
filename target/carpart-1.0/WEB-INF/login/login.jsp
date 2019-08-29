@@ -127,7 +127,7 @@
 					<button type="button" class="button" onclick="login()">登录</button>
 				</form>
 				<div class="position">
-					还没有修配连账号吗？赶快<span><a href="${ctx}/login/toRegister.shtml">点击注册</a></span>加入我们吧！
+					还没有修配连账号吗？赶快<span><a href="${ctx}/login/toRegister">点击注册</a></span>加入我们吧！
 				</div>
 			</div>
 		</div>

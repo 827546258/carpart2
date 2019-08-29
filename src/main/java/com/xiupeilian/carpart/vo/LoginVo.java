@@ -2,9 +2,27 @@ package com.xiupeilian.carpart.vo;
 
 public class LoginVo {
     private String loginName;
+    private String name;
+    private  int companyId;
     private String password;
     private String validate;
     private String email;
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;

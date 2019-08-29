@@ -90,4 +90,7 @@
       type = #{type,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findPrimeAll" resultMap="BaseResultMap">
+    select * from prime order by seq
+  </select>
 </mapper>
