@@ -101,7 +101,7 @@
     </bean>
     <!-- 配置spring-session 超时时间 秒 -->
     <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
-        <property name="maxInactiveIntervalInSeconds" value="60"></property>
+        <property name="maxInactiveIntervalInSeconds" value="1800"></property>
     </bean>
 
 </beans>

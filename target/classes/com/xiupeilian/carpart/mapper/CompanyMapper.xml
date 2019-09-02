@@ -394,4 +394,16 @@
     select * from company where company_name=#{value}
 
   </select>
+  <update id="updateCompanyPictureById" parameterType="CompanyPictureVo" >
+    update company set picurl1=#{data} where id=#{companyid}
+  </update>
+  <update id="updateCompanyPictureById2" parameterType="CompanyPictureVo" >
+    update company set picurl2=#{data} where id=#{companyid}
+  </update>
+  <update id="updateCompanyPictureById3" parameterType="CompanyPictureVo" >
+    update company set picurl3=#{data} where id=#{companyid}
+  </update>
+  <update id="updateCompanyMemoById" parameterType="Company" >
+        update company set memo =#{memo} where id=#{id}
+    </update>
 </mapper>

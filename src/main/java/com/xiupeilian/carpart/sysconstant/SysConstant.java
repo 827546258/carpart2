@@ -17,5 +17,6 @@ public class SysConstant {
     //阿里云API的bucket名称
     public static final String BACKET_NAME = "xiaoyugg";//"uploadpicture";
     //阿里云API的文件夹名称
-    public static final String FOLDER="images/";
+    public static final String FOLDER="imm/";
+
 }

@@ -5,6 +5,8 @@ package com.xiupeilian.carpart.controller;/*
 @Version 1.0
 */
 
+import com.xiupeilian.carpart.model.Company;
+import com.xiupeilian.carpart.service.CompanyService;
 import com.xiupeilian.carpart.service.ItemsService;
 import com.xiupeilian.carpart.sysconstant.SysConstant;
 import com.xiupeilian.carpart.util.AliyunOSSClientUtil;
@@ -27,6 +29,8 @@ import java.io.IOException;
 public class UpLoadController {
     @Autowired
     private ItemsService itemService;
+    @Autowired
+    private CompanyService companyService;
     @RequestMapping("/myUpload")
     public String upload(HttpServletRequest request) {
         //Items item=itemService.findItemByid(1);
@@ -34,18 +38,19 @@ public class UpLoadController {
         return "upload/index";
     }
     @RequestMapping(value = "photoupload", method = {RequestMethod.POST, RequestMethod.GET})
-    public void myphotoupload(HttpServletRequest request, @RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
+    public void myphotoupload(HttpServletRequest request, @RequestParam("file") MultipartFile file, HttpServletResponse response, Company company) throws IOException {
         CommonsMultipartFile cf = (CommonsMultipartFile) file;
         DiskFileItem fi = (DiskFileItem) cf.getFileItem();
         File f = fi.getStoreLocation();
         System.err.println(AliyunOSSClientUtil.uploadObject2OSS(AliyunOSSClientUtil.getOSSClient(), f, SysConstant.BACKET_NAME, SysConstant.FOLDER));
         //String url = AliyunOSSClientUtil.uploadObject2OSS(AliyunOSSClientUtil.getOSSClient(), f, SysConstant.BACKET_NAME, SysConstant.FOLDER);
-        System.out.println(AliyunOSSClientUtil.getUrl((SysConstant.FOLDER+f.getName())));
+        //System.out.println(AliyunOSSClientUtil.getUrl((SysConstant.FOLDER+f.getName())));
         //System.out.println("ͼƬք؃ϊַ֘"+"https://"+SysConstant.BACKET_NAME+"."+SysConstant.ENDPOINT+"/"+SysConstant.FOLDER+f.getName());
-        String imgUrl="https://"+SysConstant.BACKET_NAME+"."+SysConstant.ENDPOINT+"/"+ SysConstant.FOLDER+f.getName();
-        response.getWriter().write(imgUrl);
+        String imgUrl="https://"+SysConstant.BACKET_NAME+"."+SysConstant.ENDPOINT+"/"+SysConstant.FOLDER+f.getName();
+        response.getWriter().write(AliyunOSSClientUtil.getUrl((SysConstant.FOLDER+f.getName())));
+        System.out.println("ssssssssssssssssssssssssssssssssssss");
+        System.out.println(AliyunOSSClientUtil.getUrl((SysConstant.FOLDER+f.getName())));
+        System.out.println("ssssssssssssssssssssssssssssssssssss");
         System.out.println(imgUrl);
-
     }
-
 }
