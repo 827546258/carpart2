@@ -11,7 +11,7 @@
         	<ul>
             	<li class="usename">${user.loginName}&nbsp;&nbsp;&nbsp;&nbsp;${user.username}</li>
             	
-                <li class="shezhi"  onclick="javascript:window.top.document.getElementById('body').src ='${ctx}/index/toChangePassword.shtml'"><a href="javascript:">个人设置</a></li>
+                <li class="shezhi" value="${user.id}"  onclick="javascript:window.top.document.getElementById('body').src ='${ctx}/index/toChangePassword'"><a href="javascript:">个人设置</a></li>
                 
                 <li>${now}</li>
                 <li></li>
